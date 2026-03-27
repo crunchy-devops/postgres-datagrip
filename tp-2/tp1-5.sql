@@ -55,3 +55,16 @@ FROM invoice
 WHERE purchase_date IS NOT NULL;
 
 COMMIT;
+SELECT query, calls, total_exec_time, rows, temp_blks_written
+FROM pg_stat_statements
+WHERE query ILIKE '%invoice_line%'
+ORDER BY total_exec_time DESC;
+
+SELECT name, COUNT(*)
+FROM artist
+GROUP BY name
+HAVING COUNT(*) > 1;
+
+
+
+
